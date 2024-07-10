@@ -67,4 +67,25 @@ export default class WeatherDAO {
             return null;
         }
     }
+    static async dltLocation(username, location) {
+        try {
+            const updateResponse = await info.updateOne(
+                { username: username },
+                { $pull: { saved_location: location } }
+            );
+
+            if (updateResponse.matchedCount === 0) {
+                return { error: "User not found" };
+            }
+
+            if (updateResponse.modifiedCount === 0) {
+                return { message: "Location not found in saved locations" };
+            }
+
+            return updateResponse;
+        } catch (e) {
+            console.error(`Unable to delete location: ${e}`);
+            return { error: "Failed to delete location" };
+        }
+    }
 }

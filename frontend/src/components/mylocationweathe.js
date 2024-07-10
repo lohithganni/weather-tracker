@@ -9,9 +9,18 @@ const MyLocationWeather = ({ location }) => {
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(true);
   const [degree, setDegree] = useState("c");
+  const [username, setUsername] = useState(null);
+  const userkey = 'username';
 
   useEffect(() => {
-    let isMounted = true; 
+    const storedUser = localStorage.getItem(userkey);
+    if (storedUser) {
+      setUsername(storedUser);
+    }
+  }, []);
+
+  useEffect(() => {
+    let isMounted = true;
 
     const fetchData = async () => {
       setLoading(true);
@@ -47,13 +56,36 @@ const MyLocationWeather = ({ location }) => {
     };
   }, [location]);
 
+  const handleDelete = async () => {
+    try {
+      console.log('Attempting to delete location');
+      const response = await fetch('http://localhost:5000/api/v1/weather/user', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username: username, location: location })
+      });
+
+      if (response.ok) {
+        alert("Location removed successfully");
+      } else {
+        const errorData = await response.json();
+        console.error('Attempt failed:', errorData.error);
+        alert('Attempt failed: ' + errorData.error);
+      }
+    } catch (error) {
+      console.error('Error deleting location:', error);
+    }
+  }
+
   if (loading) {
     return <p>Loading...</p>;
   }
 
   return (
     <>
-      <div className="cards">
+      <div className="cards my-4 " style={{backgroundColor:"rgb(254, 250, 250)"}}>
         {weather && (
           <>
             <h3>{weather.location.name}, {weather.location.country}</h3>
@@ -78,6 +110,10 @@ const MyLocationWeather = ({ location }) => {
                   <p className="p2">{degree === 'c' ? weather.forecast.forecastday[0].day.mintemp_c : weather.forecast.forecastday[0].day.mintemp_f} &deg;{degree}</p>
                 </div>
                 <div className="item2">
+                  <p className="p1">Feels Like:</p>
+                  <p className="p2">{degree === 'c' ? weather.current.feelslike_c : weather.current.feelslike_f} &deg;{degree}</p>
+                </div>
+                <div className="item2">
                   <p className="p1">UV Index:</p>
                   <p className="p2">{weather.current.uv}</p>
                 </div>
@@ -94,6 +130,7 @@ const MyLocationWeather = ({ location }) => {
                   <p className="p2">{weather.current.wind_kph} km/h</p>
                 </div>
               </div>
+              <button className="button-3 my-2" onClick={handleDelete}>Remove location</button>
             </div>
           </>
         )}

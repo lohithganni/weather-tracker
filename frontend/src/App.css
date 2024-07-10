@@ -9,8 +9,9 @@
 
 .searchbar {
   display: flex;
-  justify-content: flex-end;
+  justify-content:flex-end;
   align-items: center;
+  
 }
 
 .button {
@@ -21,6 +22,7 @@
   padding: 0px 5px;
   cursor: pointer;
 }
+
 .button-2 {
   background-color: rgba(51, 51, 51, 0.05);
   border-radius: 10px;
@@ -43,6 +45,7 @@
   -webkit-user-select: none;
   touch-action: manipulation;
 }
+
 .button-3 {
   background-color: rgba(213, 20, 20, 0.899);
   border-radius: 8px;
@@ -79,6 +82,9 @@
   flex-direction: column;
   width: 80vw;
   margin: 0 auto;
+  flex-direction: column;
+  border-radius: 10px;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
 }
 
 .item1 {
@@ -98,13 +104,13 @@
   margin: 0 10px;
 }
 
-
 .p1 {
   color: grey;
-  margin:0px;
+  margin: 0px;
 }
-.p2{
-  margin:0px;
+
+.p2 {
+  margin: 0px;
 }
 
 /* Mobile styles */
@@ -120,18 +126,18 @@
   }
 
   .cards {
-    width: 100vw;
+    width: 80vw;
     padding: 0 10px;
+    margin:0 10px;
   }
 
   .item1 p {
     font-size: 20px;
-    margin:0px;
+    margin: 0px;
   }
 
   .item2 .p1, .item2 .p2 {
     font-size: 18px;
-    
   }
 }
 
@@ -184,7 +190,7 @@
 }
 
 .logged-in-container {
-  margin:30px;
+  margin: 30px;
 }
 
 .logged-in-text {
@@ -202,12 +208,13 @@
 .logged-in-button:hover {
   background-color: #c82333;
 }
+
 @media (max-width: 768px) {
   html, body {
-  width: auto !important;
-  overflow-x: hidden !important;
+    width: auto !important;
+    overflow-x: hidden !important;
   }
-  }
+}
 
 .container {
   margin-top: 1rem;
@@ -218,9 +225,7 @@
     display: none;
   }
 }
-.table td{
-  
-  
+
+.table td {
   align-content: center;
 }
-

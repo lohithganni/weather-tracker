@@ -66,4 +66,35 @@ export default class UserInfoCtrl {
             return res.status(500).json({ error: "Internal server error" });
         }
     }
+    static async apideleteLocation(req, res) {
+        try {
+            const { username, location } = req.body;
+    
+            if (!username || !location) {
+                return res.status(400).json({ error: "Username and location are required" });
+            }
+    
+            const userExist = await WeatherDAO.getUser(username);
+    
+            if (!userExist) {
+                return res.status(404).json({ error: "User not found" });
+            }
+    
+            const deleteResult = await WeatherDAO.dltLocation(username, location);
+    
+            if (deleteResult.error) {
+                return res.status(500).json({ error: deleteResult.error });
+            }
+    
+            if (deleteResult.modifiedCount === 0) {
+                return res.status(400).json({ message: "Location not found in saved locations" });
+            }
+    
+            return res.status(200).json({ message: "Location deleted successfully" });
+    
+        } catch (e) {
+            console.error(`Unable to delete location: ${e}`);
+            return res.status(500).json({ error: "Internal server error" });
+        }
+    }
 }
