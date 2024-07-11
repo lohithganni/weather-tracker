@@ -124,7 +124,7 @@ const Weather = ({ location }) => {
           <h3 className="text-center">Forecast</h3>
           <div className="wrapper">
             {weather.forecast.forecastday[0].hour.map((hour, index) => {
-              if (index % 2 === 0)
+              if (index % 2 === 0){
                 return (
                   <div
                     key={index}
@@ -143,7 +143,9 @@ const Weather = ({ location }) => {
                       </div>
                     </div>
                   </div>
-                );
+                );}else {
+                  return null;
+                }
             })}
           </div>
         </div>
