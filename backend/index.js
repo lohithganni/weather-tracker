@@ -12,8 +12,7 @@ MongoClient.connect(
   {
     wtimeoutMS: 2500, // Example value; set to your preferred timeout in milliseconds
     useUnifiedTopology: true, // Ensures compatibility
-    ssl: true, // Enable SSL
-    sslValidate: true, // Validate the SSL certificate
+    tls: true, // Enable TLS (SSL)
     tlsCAFile: '/path/to/ca.pem', // Path to CA file if using custom CA (optional)
   }
 )
