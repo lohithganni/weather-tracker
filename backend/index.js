@@ -10,8 +10,8 @@ const port = process.env.PORT || 8000;
 MongoClient.connect(
   process.env.WEATHER_DB_URI,
   {
-    wtimeoutMS: 2500, // Example value; set to your preferred timeout in milliseconds
-    tls: true, // Enable TLS (SSL)
+    wtimeoutMS: 5000, 
+    tls: true, 
   }
 )
   .catch(err => {
@@ -19,7 +19,7 @@ MongoClient.connect(
     process.exit(1);
   })
   .then(async client => {
-    await WeatherDAO.injectDB(client); // passed mongodb client to DAO.js
+    await WeatherDAO.injectDB(client); 
     app.listen(port, () => {
       console.log(`listening on port ${port}`);
     });
