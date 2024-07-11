@@ -57,7 +57,7 @@ const Weather = ({ location }) => {
     }
     try {
       console.log('Attempting to add location');
-      const response = await fetch('http://localhost:5000/api/v1/weather/user', {
+      const response = await fetch('https://weather-tracker-8gkb.onrender.com/api/v1/weather/user', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'

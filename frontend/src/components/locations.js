@@ -23,7 +23,7 @@ const Locations = () => {
       }
       try {
         console.log('Attempting to fetch locations');
-        const response = await fetch(`http://localhost:5000/api/v1/weather/user?username=${username}`, {
+        const response = await fetch(`https://weather-tracker-8gkb.onrender.com/api/v1/weather/user?username=${username}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'

@@ -59,7 +59,7 @@ const MyLocationWeather = ({ location }) => {
   const handleDelete = async () => {
     try {
       console.log('Attempting to delete location');
-      const response = await fetch('http://localhost:5000/api/v1/weather/user', {
+      const response = await fetch('https://weather-tracker-8gkb.onrender.com/api/v1/weather/user', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json'
@@ -97,8 +97,11 @@ const MyLocationWeather = ({ location }) => {
                 ) : (
                   <p style={{ fontSize: '25px', margin: '0' }}> {weather.current.temp_f}</p>
                 )}
-                <button className="button" onClick={() => setDegree('c')} style={degree === 'c' ? { backgroundColor: '#D4D9E1' } : { backgroundColor: 'transparent' }}>&deg;c</button>
-                <button className="button" onClick={() => setDegree('f')} style={degree === 'f' ? { backgroundColor: 'grey' } : { backgroundColor: 'transparent' }}>&deg;f</button>
+                <button className="button" onClick={() => setDegree('c')} style={degree === 'c' ? { backgroundColor: 'grey' } : { backgroundColor: 'transparent' }}>&deg;C</button>
+                <button className="button" onClick={() => setDegree('f')} style={degree === 'f' ? { backgroundColor: 'grey' } : { backgroundColor: 'transparent' }}>&deg;F</button>
+              </div>
+              <div style={{width:'100%',margin:'0 auto'}}>
+                <p className="text" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Condition:{weather.current.condition.text}</p>
               </div>
               <div className="item1">
                 <div className="item2">
