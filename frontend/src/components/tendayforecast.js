@@ -12,7 +12,7 @@ const TenDayForecast = ({ weather }) => {
   };
 
   return (
-    <div className="container mt-4">
+    <div className="container mt-4" style={{padding:'0px'}}>
       <h3>10-Day Weather</h3>
       <table className="table ">
         <thead>
