@@ -9,21 +9,14 @@ const Search = () => {
   useEffect(() => {
     const fetchLocationFromIp = async () => {
       try {
-        const ipRes = await fetch("https://api.ipify.org?format=json");
-        if (!ipRes.ok) {
-          throw new Error(`Failed to fetch IP address: ${ipRes.statusText}`);
-        }
-        const ipData = await ipRes.json();
-        const ip = ipData.ip;
-
-        const locationRes = await fetch(`http://ip-api.com/json/${ip}`);
+        const locationRes = await fetch(`https://freeipapi.com/api/json`);
         if (!locationRes.ok) {
           throw new Error(
             `Failed to fetch location data: ${locationRes.statusText}`
           );
         }
         const locationData = await locationRes.json();
-        setLocation(`${locationData.city}, ${locationData.country}`);
+        setLocation(`${locationData.cityName}, ${locationData.countryName}`);
       } catch (error) {
         console.error("Error fetching location by IP:", error);
       }
