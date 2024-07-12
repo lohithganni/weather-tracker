@@ -9,10 +9,14 @@
 
 .searchbar {
   display: flex;
-  background-color:transparent;
-  margin:'0 5px'
+  justify-content:flex-end;
+  align-items: center;
 }
-
+.firstbox{
+  display: flex;
+  background-color:transparent;
+  margin:'0 30px'
+}
 
 .button {
   border: none;

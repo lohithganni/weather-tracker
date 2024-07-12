@@ -77,7 +77,7 @@ const Locations = () => {
         username ? (
           <div>
             <h3 className="Heading my-3 mx-4">Saved Locations</h3>
-            <div className="searchbar" style={{ position: 'relative' }}>
+            <div className="firstbox" style={{ position: 'relative' }}>
               <MdChevronLeft 
                 size={60} 
                 className="opacity-50 cursor-pointer" 
