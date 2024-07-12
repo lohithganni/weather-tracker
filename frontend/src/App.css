@@ -9,10 +9,10 @@
 
 .searchbar {
   display: flex;
-  justify-content:flex-end;
-  align-items: center;
-  
+  background-color:transparent;
+  margin:'0 5px'
 }
+
 
 .button {
   border: none;
@@ -126,8 +126,8 @@
   }
 
   .cards {
-    width: 80vw;
-    padding: 0 10px;
+    width: 95vw;
+    padding: 0 30px;
     margin:0 10px;
   }
 

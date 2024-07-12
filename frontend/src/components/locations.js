@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import MyLocationWeather from "./mylocationweathe";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
-import { Dimensions } from 'react-native'
+import { Dimensions } from 'react-native';
 
 const Locations = () => {
   const [username, setUsername] = useState(null);
@@ -51,7 +51,7 @@ const Locations = () => {
 
   const scrollLeft = () => {
     let w = Dimensions.get('window').width;
-    let a = w < 1024 ? w * 0.8 : w;
+    let a =  w;
     document.querySelector('.wrapper').scrollBy({
       left: -a,
       behavior: 'smooth'
@@ -60,7 +60,7 @@ const Locations = () => {
 
   const scrollRight = () => {
     let w = Dimensions.get('window').width;
-    let a = w < 1024 ? w * 0.8 : w;
+    let a = w;
     document.querySelector('.wrapper').scrollBy({
       left: a,
       behavior: 'smooth'
@@ -74,24 +74,45 @@ const Locations = () => {
   return (
     <>
       {
-        username?(<div>
-          <h3 className="Heading my-3 mx-4" >Saved Locations</h3>
-          <div className="searchbar">
-            <button className="button" >
-              <MdChevronLeft size={30} className="opacity-50 cursor-pointer background-color-rgb(254, 250, 250)" onClick={scrollLeft} />
-            </button>
-            <div className="wrapper">
-              {locations.slice().reverse().map((location, index) => (
-                <div key={index}>
-                  <MyLocationWeather location={location} />
-                </div>
-              ))}
+        username ? (
+          <div>
+            <h3 className="Heading my-3 mx-4">Saved Locations</h3>
+            <div className="searchbar" style={{ position: 'relative' }}>
+              <MdChevronLeft 
+                size={60} 
+                className="opacity-50 cursor-pointer" 
+                style={{ 
+                  backgroundColor: 'transparent', 
+                  position: 'absolute', 
+                  top: '50%', 
+                  left: '-20px'  
+                }} 
+                onClick={scrollLeft} 
+              />
+              <div className="wrapper" style={{ overflowX: 'auto', whiteSpace: 'nowrap' }}>
+                {locations.slice().reverse().map((location, index) => (
+                  <div key={index} style={{ display: 'inline-block', margin: '0 10px' }}>
+                    <MyLocationWeather location={location} />
+                  </div>
+                ))}
+              </div>
+              <MdChevronRight 
+                size={60} 
+                className="opacity-50 cursor-pointer" 
+                style={{ 
+                  backgroundColor: 'transparent', 
+                  position: 'absolute', 
+                  top: '50%', 
+                  
+                  right: '-20px'  
+                }} 
+                onClick={scrollRight} 
+              />
             </div>
-            <button className="button" >
-              <MdChevronRight size={30} className="opacity-50 cursor-pointer" onClick={scrollRight}/>
-            </button>
           </div>
-        </div>):(<p>login to get locations</p>)
+        ) : (
+          <p>login to get locations</p>
+        )
       }
     </>
   );
