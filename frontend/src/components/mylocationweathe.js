@@ -86,7 +86,7 @@ const MyLocationWeather = ({ location }) => {
   return (
     <>
       <div className="cards my-4 " style={{backgroundColor:"rgb(254, 250, 250)"}}>
-        {weather && (
+        {weather && weather.current && weather.current.condition && (
           <>
             <h3>{weather.location.name}, {weather.location.country}</h3>
             <div className="item1">
